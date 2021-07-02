@@ -28,7 +28,7 @@ func NewService(db *sql.DB) *Service {
 func (s *Service) GetAll() ([]*Beer, error) {
 	var result []*Beer
 
-	rows, err := s.DB.Query("select id, name, type, style from bear")
+	rows, err := s.DB.Query("select id, name, type, style from beer")
 
 	if err != nil {
 		return nil, err
@@ -44,14 +44,14 @@ func (s *Service) GetAll() ([]*Beer, error) {
 			return nil, err
 		}
 
-		result.append(result, &b)
+		result = append(result, &b)
 	}
 
 	return result, nil
 }
 
 func (s *Service) Get(ID int) (*Beer, error) {
-	var b beer
+	var b Beer
 
 	stmt, err := s.DB.Prepare("select id, name, type, style from beer where id = ?")
 
