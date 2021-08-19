@@ -50,7 +50,7 @@ func (s *Service) GetAll() ([]*Beer, error) {
 	return result, nil
 }
 
-func (s *Service) Get(ID int) (*Beer, error) {
+func (s *Service) Get(ID int64) (*Beer, error) {
 	var b Beer
 
 	stmt, err := s.DB.Prepare("select id, name, type, style from beer where id = ?")
@@ -125,7 +125,7 @@ func (s *Service) Update(b *Beer) error {
 	return nil
 }
 
-func (s *Service) Remove(ID int) error {
+func (s *Service) Remove(ID int64) error {
 	if ID == 0 {
 		return fmt.Errorf("invalid ID")
 	}
